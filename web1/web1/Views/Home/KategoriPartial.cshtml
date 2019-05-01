@@ -1,0 +1,48 @@
+﻿@model IEnumerable<web1.Models.Kategori>
+@{
+    Layout = null;
+}
+
+<h4>KATEGORILER</h4>
+<div class="row">
+    <div class="col-lg-6">
+        @foreach (var item in Model)
+        {
+            <ul class="list-unstyled mb-0">
+                <li>
+                    <a href="~/Home/KategoriMakale/@item.Kategoriid">@item.KategoriAdi</a>
+                </li>
+            </ul>
+        }
+
+    </div>
+</div>
+
+
+
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.kategoriAdı)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.kategoriAdı)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.kategoriid }) |
+                @Html.ActionLink("Details", "Details", new { id=item.kategoriid }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.kategoriid })
+            </td>
+        </tr>
+    }
+
+    </table>*@

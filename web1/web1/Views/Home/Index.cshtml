@@ -1,0 +1,76 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<web1.Models.Makale>
+
+
+
+@{
+    /**/
+
+
+
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="card mb-4">
+    @foreach (var item in Model)
+    {
+        <article class="col-md-12">
+            <h2>
+                <a href="/Home/MakaleDetay/@item.Makaleid">@item.Baslik</a>
+            </h2>
+            <p class="">
+                <img class="img-circle  img-responsive" width="60" src="@item.Uye.Foto" alt="@item.Uye.AdSoyad" />
+            </p>
+            <a href="/Uye/Index/@item.Uye.Uyeid">@item.Uye.KullanıcıAdi</a>
+            <p><span class="glyphicon glyphicon-time"></span>@String.Format("{0:  MMMM   yyyy}", item.Tarih)</p>
+            @*<p>
+                    <span class="glyphicon glyphicon-tags"></span>@item.Etikets.Count();
+                </p>*@
+            <hr>
+            <img class="img-circle img-responsive" width="400" src="@item.Foto" alt="@item.Baslik">
+            <hr>
+            @if (item.Icerik.Length > 150)
+            {
+                <p>@Html.Raw(item.Icerik.Substring(0, 150)) ...</p>
+            }
+            else
+            {
+                <p>@Html.Raw(item.Icerik) ...</p>
+            }
+            <a class="btn btn-primary" href="/Home/MakaleDetay/@item.Makaleid">Devamını Oku<span class="glyphicon glyphicon-chevron-right"></span></a>
+            <hr>
+        </article>
+    }
+
+    <div class="pagination justify-content-center mb-4">
+            <div class="pagedList">
+                <div class="pagedList pagination">
+                    @Html.PagedListPager((IPagedList)Model, Page => Url.Action("Index", new { Page }), PagedListRenderOptions.PageNumbersOnly)
+                </div>
+            </div>
+        </div>
+
+    @*<div class="pagedList">
+        <div class="pagination justify-content-center mb-4">
+            @Html.PagedListPager((IPagedList)Model, Page => Url.Action("Index", new { Page }), PagedListRenderOptions.PageNumbersOnly)
+        </div>
+    </div>*@
+
+</div>
+
+
+
+
+    <!-- Pagination -->
+    @*<ul class="pagination justify-content-center mb-4">
+            <li class="page-item">
+                <a class="page-link" href="/Home/Index/Page=1">&larr; Geri</a>
+             @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page }), PagedListRenderOptions.Classic)
+            </li>
+            <li class="page-item disabled">
+                <a class="page-link" href="/Home/Index/Page=2">İleri &rarr;</a>
+            </li>
+        </ul>*@

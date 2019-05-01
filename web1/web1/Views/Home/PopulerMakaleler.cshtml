@@ -1,0 +1,17 @@
+﻿@model IEnumerable<web1.Models.Makale>
+
+@{
+    Layout = null;
+}
+<div class="card my-4">
+    <h5 class="card-header">Populer Makaleler</h5>
+    <div class="card-body">
+        <ul>
+            @foreach (var item in Model)
+            {
+            <li><a href="/Home/MakaleDetay/@item.Makaleid">@item.Baslik </a>(@item.Okunma)</li>
+            }
+        </ul>
+    </div>
+
+</div>
